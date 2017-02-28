@@ -56,7 +56,7 @@
 
 <div class="container" style="width:100%;height:100%; font-size:12px;">
 
-  <div class="row" style="min-height:90px" >
+  <div class="row" style="min-height:20px" >
 
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
@@ -76,7 +76,7 @@
                   
                     <div class="row-fluid">
                    <label class="inline" ><strong style="font-size: 16px;color:#617f10;"> 源代码:</strong></label>
-                   <input id="submitBTN"  onclick="submitTryit()" type="button" class="pull-right inline" value="提交运行 &#187;" >
+                   <input id="submitBTN"  onclick="submitTryit()" type="button" class="pull-right inline" value="运行 &#187;" >
                    <input type="hidden" id="bt" name="bt"> 
                     <input type="hidden" name="code" id="code" />
                     </div>
@@ -101,21 +101,6 @@
                    
                    
                  <div id="iframewrapper">
-                   
-
-                 </div>
-                  </div>
-                </div>
-                
-              </div>
-             
-             
-            </form>
-      </div>
-    </div>
-
-   </div>
-</div>
 
 <script>
 // Define an extended mixed-mode that understands vbscript and
@@ -135,7 +120,6 @@ matchBrackets: true,
 indentUnit: 4,
 indentWithTabs: true
 });
-
 function submitTryit() {
   var text = editor.getValue();
   var patternHtml = /<html[^>]*>((.|[\n\r])*)<\/html>/im
@@ -145,19 +129,6 @@ function submitTryit() {
   
   var array_matches_body = patternBody.exec(text);
   var basepath_flag = 1;
-  var basepath = '';
-  if(basepath_flag) {
-    basepath = '<base href="//www.runoob.com/try/demo_source/" target="_blank">';
-  }
-  if(array_matches_head) {
-    text = text.replace('<head>', '<head>' + basepath );
-  } else if (patternHtml) {
-    text = text.replace('<html>', '<head>' + basepath + '</head>');
-  } else if (array_matches_body) {
-    text = text.replace('<body>', '<body>' + basepath );
-  } else {
-    text = basepath + text;
-  }
   var ifr = document.createElement("iframe");
   ifr.setAttribute("frameborder", "0");
   ifr.setAttribute("id", "iframeResult");  
@@ -170,21 +141,11 @@ function submitTryit() {
   ifrw.document.close();
 }
 submitTryit();
-
 </script>
-
-
-
-
 <div style="display:none;">
-<script src="https://s11.cnzz.com/z_stat.php?id=5578006&web_id=5578006" language="JavaScript"></script>
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?8e2a116daf0104a78d601f40a45c75b4";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script>
-</div>
-</body></html>
