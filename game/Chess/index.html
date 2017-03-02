@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-	<meta charset="gbk">
+	<meta charset="UTF-8">
 	<title>Document</title>
 
 	<style tyle="text/css">
@@ -40,29 +40,29 @@
 	<canvas id="canvas1"></canvas>
 </body>
 <script type="text/javascript">
-	//1Îªºì    0ÎªºÚ
+	//1ä¸ºçº¢    0ä¸ºé»‘
 
-	//Æå×Ó    [ÎÄ×Ö£¬x×ø±ê£¬y×ø±ê£¬ÊÇ·ñ´æÔÚ£¬Íæ¼Ò,Æå×ÓÀàĞÍ]
+	//æ£‹å­    [æ–‡å­—ï¼Œxåæ ‡ï¼Œyåæ ‡ï¼Œæ˜¯å¦å­˜åœ¨ï¼Œç©å®¶,æ£‹å­ç±»å‹]
 	var chess=[
-			['³µ',50,50,1,1,1],['³µ',450,50,1,1,1],//1
-			['Âí',100,50,1,1,2],['Âí',400,50,1,1,2],//2
-			['Ïó',150,50,1,1,3],['Ïó',350,50,1,1,3],//3
-			['Ê¿',200,50,1,1,4],['Ê¿',300,50,1,1,4],//4
-			['Ë§',250,50,1,1,5],//5
-			['ÅÚ',100,150,1,1,6],['ÅÚ',400,150,1,1,6],//6
-			['±ø',50,200,1,1,7],['±ø',150,200,1,1,7],['±ø',250,200,1,1,7],['±ø',350,200,1,1,7],['±ø',450,200,1,1,1,7],//7
-			['³µ',50,500,1,0,1],['³µ',450,500,1,0,1],
-			['Âí',100,500,1,0,2],['Âí',400,500,1,0,2],
-			['Ïà',150,500,1,0,3],['Ïà',350,500,1,0,3],
-			['Ê¿',200,500,1,0,4],['Ê¿',300,500,1,0,4],
-			['½«',250,500,1,0,5],
-			['ÅÚ',100,400,1,0,6],['ÅÚ',400,400,1,0,6],
-			['×ä',50,350,1,0,7],['×ä',150,350,1,0,7],['×ä',250,350,1,0,7],['×ä',350,350,1,0,7],['×ä',450,350,1,0,7]
+			['è½¦',50,50,1,1,1],['è½¦',450,50,1,1,1],//1
+			['é©¬',100,50,1,1,2],['é©¬',400,50,1,1,2],//2
+			['è±¡',150,50,1,1,3],['è±¡',350,50,1,1,3],//3
+			['å£«',200,50,1,1,4],['å£«',300,50,1,1,4],//4
+			['å¸…',250,50,1,1,5],//5
+			['ç‚®',100,150,1,1,6],['ç‚®',400,150,1,1,6],//6
+			['å…µ',50,200,1,1,7],['å…µ',150,200,1,1,7],['å…µ',250,200,1,1,7],['å…µ',350,200,1,1,7],['å…µ',450,200,1,1,1,7],//7
+			['è½¦',50,500,1,0,1],['è½¦',450,500,1,0,1],
+			['é©¬',100,500,1,0,2],['é©¬',400,500,1,0,2],
+			['ç›¸',150,500,1,0,3],['ç›¸',350,500,1,0,3],
+			['å£«',200,500,1,0,4],['å£«',300,500,1,0,4],
+			['å°†',250,500,1,0,5],
+			['ç‚®',100,400,1,0,6],['ç‚®',400,400,1,0,6],
+			['å’',50,350,1,0,7],['å’',150,350,1,0,7],['å’',250,350,1,0,7],['å’',350,350,1,0,7],['å’',450,350,1,0,7]
 		];
 
 
-	var desc_click=[0,0,0,-1,0];//[x×ø±ê£¬y×ø±ê£¬Æå×ÓÏÂ±ê£¬Íæ¼Ò,Æå×ÓÀàĞÍ]
-	var whose=1;//µ±Ç°Íæ¼Ò
+	var desc_click=[0,0,0,-1,0];//[xåæ ‡ï¼Œyåæ ‡ï¼Œæ£‹å­ä¸‹æ ‡ï¼Œç©å®¶,æ£‹å­ç±»å‹]
+	var whose=1;//å½“å‰ç©å®¶
 
 	window.onload=function(){
 		var canvas=document.getElementById("canvas");
@@ -87,11 +87,11 @@
 		};
 	}
 
-	//»ñÈ¡µã»÷µÄÆå×Ó
+	//è·å–ç‚¹å‡»çš„æ£‹å­
 	function get_Chess(context,x,y){
 		var sub_x=0,sub_y=0;
 
-		//Í¨¹ıµã»÷×ø±ê¼ÆËã×î½üÆåÅÌ½»²æµã×ø±ê   ´æ´¢Îªsub_xºÍsub_y
+		//é€šè¿‡ç‚¹å‡»åæ ‡è®¡ç®—æœ€è¿‘æ£‹ç›˜äº¤å‰ç‚¹åæ ‡   å­˜å‚¨ä¸ºsub_xå’Œsub_y
 		if(x<30||y<30||x>470||y>570)	return false;
 		if(x%100>80||x%100<20)	sub_x=100*Math.round(x/100);
 		if(x%100>30&&x%100<70)	sub_x=x>100?(Math.floor(x/100)*100+50):50;
@@ -99,29 +99,29 @@
 		if(y%100>30&&y%100<70)	sub_y=y>100?(Math.floor(y/100)*100+50):50;
 		
 		
-		if(sub_x>0&&sub_y>0)//µã»÷´¦ÎªÆåÅÌÄÚ½»²æµã
+		if(sub_x>0&&sub_y>0)//ç‚¹å‡»å¤„ä¸ºæ£‹ç›˜å†…äº¤å‰ç‚¹
 		{
-			for(var i=0;i<chess.length;i++)//ÔÚËùÓĞÆå×ÓÖĞ±éÀú£¬ÅĞ¶ÏµãÖĞ´¦ÊÇ·ñÓĞÆå×Ó
+			for(var i=0;i<chess.length;i++)//åœ¨æ‰€æœ‰æ£‹å­ä¸­éå†ï¼Œåˆ¤æ–­ç‚¹ä¸­å¤„æ˜¯å¦æœ‰æ£‹å­
 			{
-				if(chess[i][1]==sub_x&&chess[i][2]==sub_y&&chess[i][3]>0)//µãÖĞµÄÎªÆå×Ó
+				if(chess[i][1]==sub_x&&chess[i][2]==sub_y&&chess[i][3]>0)//ç‚¹ä¸­çš„ä¸ºæ£‹å­
 				{
-					if(chess[i][4]==whose)//µ±Ç°Íæ¼ÒÑ¡ÖĞÆå×Ó
+					if(chess[i][4]==whose)//å½“å‰ç©å®¶é€‰ä¸­æ£‹å­
 					{
-						draw_check(context,sub_x,sub_y);//ÎªÑ¡ÖĞÆå×ÓÌí¼ÓÑ¡ÖĞ¿ò
-						desc_click=[sub_x,sub_y,i,chess[i][4],chess[i][5]];//´æ´¢Ñ¡ÖĞÆå×ÓĞÅÏ¢
+						draw_check(context,sub_x,sub_y);//ä¸ºé€‰ä¸­æ£‹å­æ·»åŠ é€‰ä¸­æ¡†
+						desc_click=[sub_x,sub_y,i,chess[i][4],chess[i][5]];//å­˜å‚¨é€‰ä¸­æ£‹å­ä¿¡æ¯
 						return false;
 					}
-					if(desc_click[3]==whose&&chess[i][4]!=whose)//µ±Ç°Íæ¼Ò³Ô×Ó
+					if(desc_click[3]==whose&&chess[i][4]!=whose)//å½“å‰ç©å®¶åƒå­
 					{
-						if(go(sub_x,sub_y,desc_click[4],true))//ÅĞ¶ÏÊÇ·ñÄÜ³Ô
+						if(go(sub_x,sub_y,desc_click[4],true))//åˆ¤æ–­æ˜¯å¦èƒ½åƒ
 						{
-							//¸üĞÂ³Ô×Ó×ø±ê
+							//æ›´æ–°åƒå­åæ ‡
 							chess[desc_click[2]][1]=sub_x;
 							chess[desc_click[2]][2]=sub_y;
-							chess[i][3]=0;//¸üĞÂ±»³ÔµôÆå×Ó×´Ì¬
-							whose=whose==0?1:0;//¸ü»»Íæ¼Ò
-							repaint(context);//ÖØĞÂ»æÖÆËùÓĞÆå×Ó
-							if(chess[i][5]==5)	document.getElementById("canvas").onclick=null;//Ä³Ò»·½½«±»³Ôµô£¬ÓÎÏ·½áÊø
+							chess[i][3]=0;//æ›´æ–°è¢«åƒæ‰æ£‹å­çŠ¶æ€
+							whose=whose==0?1:0;//æ›´æ¢ç©å®¶
+							repaint(context);//é‡æ–°ç»˜åˆ¶æ‰€æœ‰æ£‹å­
+							if(chess[i][5]==5)	document.getElementById("canvas").onclick=null;//æŸä¸€æ–¹å°†è¢«åƒæ‰ï¼Œæ¸¸æˆç»“æŸ
 						}
 					}
 
@@ -129,9 +129,9 @@
 				}
 			}
 		}
-		if(sub_x>=50&&sub_x<=450&&sub_y>=50&&sub_y<=550&&desc_click[3]==whose)//µã»÷´¦ÎªÂä×Óµã 
+		if(sub_x>=50&&sub_x<=450&&sub_y>=50&&sub_y<=550&&desc_click[3]==whose)//ç‚¹å‡»å¤„ä¸ºè½å­ç‚¹ 
 		{
-			if(go(sub_x,sub_y,desc_click[4]))//ÅĞ¶ÏÊÇ·ñÄÜÂä×Ó
+			if(go(sub_x,sub_y,desc_click[4]))//åˆ¤æ–­æ˜¯å¦èƒ½è½å­
 			{
 				chess[desc_click[2]][1]=sub_x;
 				chess[desc_click[2]][2]=sub_y;
@@ -142,19 +142,19 @@
 		}
 	}
 
-	//ÖØ»æ
+	//é‡ç»˜
 	function repaint(context)
 	{
 		context.clearRect(0,0,500,550);
 		draw_Chess_All(context);
 	}
 
-	//»­ÆåÅÌ
+	//ç”»æ£‹ç›˜
 	function draw_ChessBoard(context){
 		
 		context.lineWidth=2;
 
-		// 10ĞĞ9ÁĞ
+		// 10è¡Œ9åˆ—
 		context.beginPath();
 		for(var i=1;i<=10;i++)
 		{
@@ -168,7 +168,7 @@
 		}
 		context.stroke();
 
-		// XÏß
+		// Xçº¿
 		context.beginPath();
 		context.moveTo(200,50);
 		context.lineTo(300,150);
@@ -180,7 +180,7 @@
 		context.lineTo(200,500);
 		context.stroke();
 
-		// ¾®
+		// äº•
 		context.beginPath();
 
 		for(var i=0;i<2;i++)
@@ -206,7 +206,7 @@
 		}
 		context.stroke();
 
-		// Íâ¿ò
+		// å¤–æ¡†
 		context.save();
 		context.beginPath();
 		context.lineWidth=3;
@@ -215,36 +215,36 @@
 		context.fillRect(51,251,398,48);
 		context.restore();
 		
-		// ³şºÓºº½ç
+		// æ¥šæ²³æ±‰ç•Œ
 		context.save();
 		context.font="bold 40px KaiTi_GB2312";
 		context.translate(100,295);
 		context.rotate(-90*Math.PI/180);
-		context.fillText("³ş",0,40);
+		context.fillText("æ¥š",0,40);
 		context.restore();
 
 		context.save();
 		context.font="bold 40px KaiTi_GB2312";
 		context.translate(150,295);
 		context.rotate(-90*Math.PI/180);
-		context.fillText("ºÓ",0,40);
+		context.fillText("æ²³",0,40);
 		context.restore();
 
 		context.save();
 		context.font="bold 40px KaiTi_GB2312";
 		context.translate(400,255);
 		context.rotate(90*Math.PI/180);
-		context.fillText("ºº",0,40);
+		context.fillText("æ±‰",0,40);
 		context.restore();
 
 		context.save();
 		context.font="bold 40px KaiTi_GB2312";
 		context.translate(350,255);
 		context.rotate(90*Math.PI/180);
-		context.fillText("½ç",0,40);
+		context.fillText("ç•Œ",0,40);
 		context.restore();
 	}
-	//»­ËùÓĞÆå×Ó
+	//ç”»æ‰€æœ‰æ£‹å­
 	function draw_Chess_All(context)
 	{
 		for(var i=0;i<chess.length;i++)
@@ -255,7 +255,7 @@
 			}
 		}
 	}
-	//»­µ¥¸öÆå×Ó
+	//ç”»å•ä¸ªæ£‹å­
 	function draw_Chess_One(context,x,y,txt,p)
 	{
 
@@ -284,7 +284,7 @@
 
 	}
 
-	//»­Ñ¡ÖĞ¿ò
+	//ç”»é€‰ä¸­æ¡†
 	function draw_check(context,x,y){
 
 		repaint(context);
@@ -309,7 +309,7 @@
 
 	}
 	
-	//Æå×ÓÊÇ·ñÄÜÒÆ¶¯µ½×ø±êµã
+	//æ£‹å­æ˜¯å¦èƒ½ç§»åŠ¨åˆ°åæ ‡ç‚¹
 	function go(x2,y2,txt,eat)
 	{
 		var x1=desc_click[0];
@@ -319,13 +319,13 @@
 		var min_y=y1>y2?y2:y1;
 		var max_y=y1>y2?y1:y2;
 		var can_go=true;
-		var num=0;//ÅÚÌ¨Êı
+		var num=0;//ç‚®å°æ•°
 
 		if(is_face_to_face(x2))	return false;
 		switch(txt)
 		{
 			case 1:
-				// console.log("³µ");
+				// console.log("è½¦");
 				if(x1!=x2&&y1!=y2)
 				{
 					can_go=false;
@@ -338,7 +338,7 @@
 				}
 				break;
 			case 2:
-				// console.log("Âí");
+				// console.log("é©¬");
 				can_go=false;
 				if(x1-50==x2&&y1-100==y2&&!is_chess(x1,y1-50)) can_go=true;
 				if(x1+50==x2&&y1-100==y2&&!is_chess(x1,y1-50)) can_go=true;
@@ -350,7 +350,7 @@
 				if(x1+100==x2&&y1+50==y2&&!is_chess(x1+50,y1)) can_go=true;
 				break;
 			case 3:
-				// console.log("Ïà");
+				// console.log("ç›¸");
 				can_go=false;
 				if(whose==1&&y2>250)	break;
 				if(whose==0&&y2<300)	break;
@@ -360,7 +360,7 @@
 				if(x1+100==x2&&y1+100==y2&&!is_chess(x1+50,y1+50))	can_go=true;
 				break;
 			case 4:
-				// console.log("Ê¿");
+				// console.log("å£«");
 				can_go=false;
 				if(x2<200||x2>300)	break;
 				if(whose==1&&y2>150)	break;
@@ -371,7 +371,7 @@
 				if(x1-50==x2&&y1-50==y2)	can_go=true;
 				break;
 			case 5:
-				// console.log("½«");
+				// console.log("å°†");
 				can_go=false;
 				if(x2<200||x2>300)	break;
 				if(whose==1&&y2>150)	break;
@@ -382,7 +382,7 @@
 				if(x1==x2&&y1-50==y2)	can_go=true;
 				break;
 			case 6:
-				// console.log("ÅÚ");
+				// console.log("ç‚®");
 				if(x1!=x2&&y1!=y2)
 				{
 					can_go=false;
@@ -405,7 +405,7 @@
 				}
 				break;
 			case 7:
-				// console.log("±ø");
+				// console.log("å…µ");
 
 				if(whose==1&&y1>y2)	can_go=false;
 				if(whose==0&&y1<y2)	can_go=false;
@@ -417,7 +417,7 @@
 		return can_go;
 	}
 
-	//×ø±êµãÊÇ·ñ´æÔÚÆå×Ó
+	//åæ ‡ç‚¹æ˜¯å¦å­˜åœ¨æ£‹å­
 	function is_chess(x,y){
 		var existe=false;
 
@@ -428,12 +428,12 @@
 		}
 		return existe;
 	}
-	//ÊÇ·ñ¶Ô½«
+	//æ˜¯å¦å¯¹å°†
 	function is_face_to_face(x)
 	{
-		var r_x=0,r_y=0,b_x=0,b_y=0,num=0;//ºì½«XY×ø±ê£¬ºÚ½«XY×ø±ê£¬Ö®¼äÆå×ÓÊı
+		var r_x=0,r_y=0,b_x=0,b_y=0,num=0;//çº¢å°†XYåæ ‡ï¼Œé»‘å°†XYåæ ‡ï¼Œä¹‹é—´æ£‹å­æ•°
 		var state=false;
-		for(var i=0;i<chess.length;i++)//»ñÈ¡Á½¸ö½«µÄxy×ø±ê
+		for(var i=0;i<chess.length;i++)//è·å–ä¸¤ä¸ªå°†çš„xyåæ ‡
 		{
 			if(chess[i][5]==5&&chess[i][4]==1)	
 			{
@@ -446,9 +446,9 @@
 				b_y=chess[i][2];
 			}
 		}
-		if(r_x==b_x)//ÔÚÒ»ÌõÏßÉÏ
+		if(r_x==b_x)//åœ¨ä¸€æ¡çº¿ä¸Š
 		{
-			for(var i=0;i<chess.length;i++)//Í³¼Æ½«Ö®¼äÆå×ÓÊı
+			for(var i=0;i<chess.length;i++)//ç»Ÿè®¡å°†ä¹‹é—´æ£‹å­æ•°
 			{
 				if(chess[i][1]==r_x&&chess[i][3]>0)	num++;
 			}
@@ -457,10 +457,10 @@
 		}
 		return state;
 	}
-	//¸ü¸Äµ±Ç°Âä×Ó·½Íæ¼Ò±êÊ¾
+	//æ›´æ”¹å½“å‰è½å­æ–¹ç©å®¶æ ‡ç¤º
 	function update_h2(){
 		var h2=document.getElementById("h2");
-		h2.innerHTML=whose==1?"ºì·½":"ºÚ·½";
+		h2.innerHTML=whose==1?"çº¢æ–¹":"é»‘æ–¹";
 		h2.style.color=whose==1?"#ff0000":"#000";
 	}
 </script>
