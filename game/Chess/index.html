@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="gbk">
+	<title>Document</title>
+
+	<style tyle="text/css">
+		body{
+			background:#eee;
+		}
+		#canvas,#canvas1{
+			position:absolute;
+			left:50%;
+			top:50%;
+			margin-left:-250px;
+			margin-top:-250px;
+		}
+		#canvas{
+			z-index:10;
+		}
+		#canvas1{
+			z-index:1;
+			background:#b3b37d;
+		}
+		#h2{
+			width:100px;
+			height:50px;
+			position:absolute;
+			left:50%;
+			top:50%;
+			margin-left:-50px;
+			margin-top:-280px;
+			text-align:center;
+		}
+	</style>
+</head>
+<body onselectstart="return false;">
+	<h2 id="h2"></h2>
+	<canvas id="canvas"></canvas>
+	<canvas id="canvas1"></canvas>
+</body>
+<script type="text/javascript">
+	//1为红    0为黑
+
+	//棋子    [文字，x坐标，y坐标，是否存在，玩家,棋子类型]
+	var chess=[
+			['车',50,50,1,1,1],['车',450,50,1,1,1],//1
+			['马',100,50,1,1,2],['马',400,50,1,1,2],//2
+			['象',150,50,1,1,3],['象',350,50,1,1,3],//3
+			['士',200,50,1,1,4],['士',300,50,1,1,4],//4
+			['帅',250,50,1,1,5],//5
+			['炮',100,150,1,1,6],['炮',400,150,1,1,6],//6
+			['兵',50,200,1,1,7],['兵',150,200,1,1,7],['兵',250,200,1,1,7],['兵',350,200,1,1,7],['兵',450,200,1,1,1,7],//7
+			['车',50,500,1,0,1],['车',450,500,1,0,1],
+			['马',100,500,1,0,2],['马',400,500,1,0,2],
+			['相',150,500,1,0,3],['相',350,500,1,0,3],
+			['士',200,500,1,0,4],['士',300,500,1,0,4],
+			['将',250,500,1,0,5],
+			['炮',100,400,1,0,6],['炮',400,400,1,0,6],
+			['卒',50,350,1,0,7],['卒',150,350,1,0,7],['卒',250,350,1,0,7],['卒',350,350,1,0,7],['卒',450,350,1,0,7]
+		];
+
+
+	var desc_click=[0,0,0,-1,0];//[x坐标，y坐标，棋子下标，玩家,棋子类型]
+	var whose=1;//当前玩家
+
+	window.onload=function(){
+		var canvas=document.getElementById("canvas");
+		var canvas1=document.getElementById("canvas1");
+
+		canvas.width=500;
+		canvas.height=550;
+		
+		canvas1.width=500;
+		canvas1.height=550;
+
+		var context=canvas.getContext("2d");
+		var context1=canvas1.getContext("2d");
+
+		draw_ChessBoard(context1);
+		draw_Chess_All(context);
+		update_h2();
+
+		canvas.onclick=function(e){
+			get_Chess(context,e.clientX-canvas.offsetLeft,e.clientY-canvas.offsetTop);
+			update_h2();
+		};
+	}
+
+	//获取点击的棋子
+	function get_Chess(context,x,y){
+		var sub_x=0,sub_y=0;
+
+		//通过点击坐标计算最近棋盘交叉点坐标   存储为sub_x和sub_y
+		if(x<30||y<30||x>470||y>570)	return false;
+		if(x%100>80||x%100<20)	sub_x=100*Math.round(x/100);
+		if(x%100>30&&x%100<70)	sub_x=x>100?(Math.floor(x/100)*100+50):50;
+		if(y%100>80||y%100<20)	sub_y=100*Math.round(y/100);
+		if(y%100>30&&y%100<70)	sub_y=y>100?(Math.floor(y/100)*100+50):50;
+		
+		
+		if(sub_x>0&&sub_y>0)//点击处为棋盘内交叉点
+		{
+			for(var i=0;i<chess.length;i++)//在所有棋子中遍历，判断点中处是否有棋子
+			{
+				if(chess[i][1]==sub_x&&chess[i][2]==sub_y&&chess[i][3]>0)//点中的为棋子
+				{
+					if(chess[i][4]==whose)//当前玩家选中棋子
+					{
+						draw_check(context,sub_x,sub_y);//为选中棋子添加选中框
+						desc_click=[sub_x,sub_y,i,chess[i][4],chess[i][5]];//存储选中棋子信息
+						return false;
+					}
+					if(desc_click[3]==whose&&chess[i][4]!=whose)//当前玩家吃子
+					{
+						if(go(sub_x,sub_y,desc_click[4],true))//判断是否能吃
+						{
+							//更新吃子坐标
+							chess[desc_click[2]][1]=sub_x;
+							chess[desc_click[2]][2]=sub_y;
+							chess[i][3]=0;//更新被吃掉棋子状态
+							whose=whose==0?1:0;//更换玩家
+							repaint(context);//重新绘制所有棋子
+							if(chess[i][5]==5)	document.getElementById("canvas").onclick=null;//某一方将被吃掉，游戏结束
+						}
+					}
+
+					return false;
+				}
+			}
+		}
+		if(sub_x>=50&&sub_x<=450&&sub_y>=50&&sub_y<=550&&desc_click[3]==whose)//点击处为落子点 
+		{
+			if(go(sub_x,sub_y,desc_click[4]))//判断是否能落子
+			{
+				chess[desc_click[2]][1]=sub_x;
+				chess[desc_click[2]][2]=sub_y;
+				repaint(context);
+				desc_click=[0,0,0,-1,0];
+				whose=whose==0?1:0;
+			}
+		}
+	}
+
+	//重绘
+	function repaint(context)
+	{
+		context.clearRect(0,0,500,550);
+		draw_Chess_All(context);
+	}
+
+	//画棋盘
+	function draw_ChessBoard(context){
+		
+		context.lineWidth=2;
+
+		// 10行9列
+		context.beginPath();
+		for(var i=1;i<=10;i++)
+		{
+			context.moveTo(50,50*i);
+			context.lineTo(450,50*i);
+		}
+		for(var i=1;i<=9;i++)
+		{
+			context.moveTo(50*i,50);
+			context.lineTo(50*i,500);
+		}
+		context.stroke();
+
+		// X线
+		context.beginPath();
+		context.moveTo(200,50);
+		context.lineTo(300,150);
+		context.moveTo(300,50);
+		context.lineTo(200,150);
+		context.moveTo(200,400);
+		context.lineTo(300,500);
+		context.moveTo(300,400);
+		context.lineTo(200,500);
+		context.stroke();
+
+		// 井
+		context.beginPath();
+
+		for(var i=0;i<2;i++)
+		{
+			for(var j=0;j<2;j++)
+			{
+				context.moveTo(85+300*i,145+250*j);
+				context.lineTo(95+300*i,145+250*j);
+				context.lineTo(95+300*i,135+250*j);
+
+				context.moveTo(105+300*i,135+250*j);
+				context.lineTo(105+300*i,145+250*j);
+				context.lineTo(115+300*i,145+250*j);
+
+				context.moveTo(85+300*i,155+250*j);
+				context.lineTo(95+300*i,155+250*j);
+				context.lineTo(95+300*i,165+250*j);
+
+				context.moveTo(105+300*i,165+250*j);
+				context.lineTo(105+300*i,155+250*j);
+				context.lineTo(115+300*i,155+250*j);
+			}
+		}
+		context.stroke();
+
+		// 外框
+		context.save();
+		context.beginPath();
+		context.lineWidth=3;
+		context.strokeRect(46,46,408,458);
+		context.fillStyle="#b3b37d"
+		context.fillRect(51,251,398,48);
+		context.restore();
+		
+		// 楚河汉界
+		context.save();
+		context.font="bold 40px KaiTi_GB2312";
+		context.translate(100,295);
+		context.rotate(-90*Math.PI/180);
+		context.fillText("楚",0,40);
+		context.restore();
+
+		context.save();
+		context.font="bold 40px KaiTi_GB2312";
+		context.translate(150,295);
+		context.rotate(-90*Math.PI/180);
+		context.fillText("河",0,40);
+		context.restore();
+
+		context.save();
+		context.font="bold 40px KaiTi_GB2312";
+		context.translate(400,255);
+		context.rotate(90*Math.PI/180);
+		context.fillText("汉",0,40);
+		context.restore();
+
+		context.save();
+		context.font="bold 40px KaiTi_GB2312";
+		context.translate(350,255);
+		context.rotate(90*Math.PI/180);
+		context.fillText("界",0,40);
+		context.restore();
+	}
+	//画所有棋子
+	function draw_Chess_All(context)
+	{
+		for(var i=0;i<chess.length;i++)
+		{
+			if(chess[i][3]>0)
+			{
+				draw_Chess_One(context,chess[i][1],chess[i][2],chess[i][0],chess[i][4]);
+			}
+		}
+	}
+	//画单个棋子
+	function draw_Chess_One(context,x,y,txt,p)
+	{
+
+		var color=p>0?"#ff0000":"#000000";
+		context.save();
+		context.beginPath();
+		var b_Color=context.createLinearGradient(x+15,y-15,x-15,y+15);
+		b_Color.addColorStop(0,"#f3f5d5");
+		b_Color.addColorStop(1,"#8c834d");
+		context.arc(x,y,22,0,2*Math.PI);
+		context.fillStyle=b_Color;
+		context.fill();
+
+		context.beginPath();
+		context.arc(x,y,17,0,2*Math.PI);
+		context.fillStyle="#f5da94";
+		context.strokeStyle="#c9c876";
+		context.stroke();
+		context.fill();
+
+		context.beginPath();
+		context.fillStyle=color;
+		context.font="900 24px KaiTi_GB2312";
+		context.fillText(txt,x-12,y+8);
+		context.restore();
+
+	}
+
+	//画选中框
+	function draw_check(context,x,y){
+
+		repaint(context);
+
+		context.beginPath();
+		context.moveTo(x-23,y-10);
+		context.lineTo(x-23,y-23);
+		context.lineTo(x-10,y-23);
+
+		context.moveTo(x+10,y-23);
+		context.lineTo(x+23,y-23);
+		context.lineTo(x+23,y-10);
+
+		context.moveTo(x-23,y+10);
+		context.lineTo(x-23,y+23);
+		context.lineTo(x-10,y+23);
+
+		context.moveTo(x+23,y+10);
+		context.lineTo(x+23,y+23);
+		context.lineTo(x+10,y+23);
+		context.stroke();
+
+	}
+	
+	//棋子是否能移动到坐标点
+	function go(x2,y2,txt,eat)
+	{
+		var x1=desc_click[0];
+		var y1=desc_click[1];
+		var min_x=x1>x2?x2:x1;
+		var max_x=x1>x2?x1:x2;
+		var min_y=y1>y2?y2:y1;
+		var max_y=y1>y2?y1:y2;
+		var can_go=true;
+		var num=0;//炮台数
+
+		if(is_face_to_face(x2))	return false;
+		switch(txt)
+		{
+			case 1:
+				// console.log("车");
+				if(x1!=x2&&y1!=y2)
+				{
+					can_go=false;
+					break;
+				}
+				for(var i=0;i<chess.length;i++)
+				{
+					if(chess[i][1]==x1&&chess[i][2]>min_y&&chess[i][2]<max_y&&chess[i][3]!=0)	can_go=false;
+					if(chess[i][2]==y1&&chess[i][1]>min_x&&chess[i][1]<max_x&&chess[i][3]!=0)	can_go=false;
+				}
+				break;
+			case 2:
+				// console.log("马");
+				can_go=false;
+				if(x1-50==x2&&y1-100==y2&&!is_chess(x1,y1-50)) can_go=true;
+				if(x1+50==x2&&y1-100==y2&&!is_chess(x1,y1-50)) can_go=true;
+				if(x1-50==x2&&y1+100==y2&&!is_chess(x1,y1+50)) can_go=true;
+				if(x1+50==x2&&y1+100==y2&&!is_chess(x1,y1+50)) can_go=true;
+				if(x1-100==x2&&y1-50==y2&&!is_chess(x1-50,y1)) can_go=true;
+				if(x1-100==x2&&y1+50==y2&&!is_chess(x1-50,y1)) can_go=true;
+				if(x1+100==x2&&y1-50==y2&&!is_chess(x1+50,y1)) can_go=true;
+				if(x1+100==x2&&y1+50==y2&&!is_chess(x1+50,y1)) can_go=true;
+				break;
+			case 3:
+				// console.log("相");
+				can_go=false;
+				if(whose==1&&y2>250)	break;
+				if(whose==0&&y2<300)	break;
+				if(x1-100==x2&&y1-100==y2&&!is_chess(x1-50,y1-50))	can_go=true;
+				if(x1+100==x2&&y1-100==y2&&!is_chess(x1+50,y1-50))	can_go=true;
+				if(x1-100==x2&&y1+100==y2&&!is_chess(x1-50,y1+50))	can_go=true;
+				if(x1+100==x2&&y1+100==y2&&!is_chess(x1+50,y1+50))	can_go=true;
+				break;
+			case 4:
+				// console.log("士");
+				can_go=false;
+				if(x2<200||x2>300)	break;
+				if(whose==1&&y2>150)	break;
+				if(whose==0&&y2<400)	break;
+				if(x1+50==x2&&y1+50==y2)	can_go=true;
+				if(x1+50==x2&&y1-50==y2)	can_go=true;
+				if(x1-50==x2&&y1+50==y2)	can_go=true;
+				if(x1-50==x2&&y1-50==y2)	can_go=true;
+				break;
+			case 5:
+				// console.log("将");
+				can_go=false;
+				if(x2<200||x2>300)	break;
+				if(whose==1&&y2>150)	break;
+				if(whose==0&&y2<400)	break;
+				if(x1+50==x2&&y1==y2)	can_go=true;
+				if(x1-50==x2&&y1==y2)	can_go=true;
+				if(x1==x2&&y1+50==y2)	can_go=true;
+				if(x1==x2&&y1-50==y2)	can_go=true;
+				break;
+			case 6:
+				// console.log("炮");
+				if(x1!=x2&&y1!=y2)
+				{
+					can_go=false;
+					break;
+				}
+				if(eat)
+				{
+					for(var i=0;i<chess.length;i++)
+					{
+						if(chess[i][1]==x1&&chess[i][2]>min_y&&chess[i][2]<max_y&&chess[i][3]!=0)	num++;
+						if(chess[i][2]==y1&&chess[i][1]>min_x&&chess[i][1]<max_x&&chess[i][3]!=0)	num++;
+					}
+					if(num!=1)	can_go=false;
+					break;
+				}
+				for(var i=0;i<chess.length;i++)
+				{
+					if(chess[i][1]==x1&&chess[i][2]>min_y&&chess[i][2]<max_y&&chess[i][3]!=0)	can_go=false;
+					if(chess[i][2]==y1&&chess[i][1]>min_x&&chess[i][1]<max_x&&chess[i][3]!=0)	can_go=false;
+				}
+				break;
+			case 7:
+				// console.log("兵");
+
+				if(whose==1&&y1>y2)	can_go=false;
+				if(whose==0&&y1<y2)	can_go=false;
+				if(whose==1&&y1<=250&&x1!=x2)	can_go=false;
+				if(whose==0&&y1>=300&&x1!=x2)	can_go=false;
+				if(max_x-min_x+max_y-min_y>50)	can_go=false;
+				break;
+		}
+		return can_go;
+	}
+
+	//坐标点是否存在棋子
+	function is_chess(x,y){
+		var existe=false;
+
+		for(var i=0;i<chess.length;i++)
+		{
+			if(chess[i][1]==x&&chess[i][2]==y&&chess[i][3]==1)
+				existe=true;
+		}
+		return existe;
+	}
+	//是否对将
+	function is_face_to_face(x)
+	{
+		var r_x=0,r_y=0,b_x=0,b_y=0,num=0;//红将XY坐标，黑将XY坐标，之间棋子数
+		var state=false;
+		for(var i=0;i<chess.length;i++)//获取两个将的xy坐标
+		{
+			if(chess[i][5]==5&&chess[i][4]==1)	
+			{
+				r_x=chess[i][1];
+				r_y=chess[i][2];
+			}
+			if(chess[i][5]==5&&chess[i][4]==0)	
+			{
+				b_x=chess[i][1];
+				b_y=chess[i][2];
+			}
+		}
+		if(r_x==b_x)//在一条线上
+		{
+			for(var i=0;i<chess.length;i++)//统计将之间棋子数
+			{
+				if(chess[i][1]==r_x&&chess[i][3]>0)	num++;
+			}
+
+			if(num-2==1&&x!=r_x)	state=true;
+		}
+		return state;
+	}
+	//更改当前落子方玩家标示
+	function update_h2(){
+		var h2=document.getElementById("h2");
+		h2.innerHTML=whose==1?"红方":"黑方";
+		h2.style.color=whose==1?"#ff0000":"#000";
+	}
+</script>
+</html>
