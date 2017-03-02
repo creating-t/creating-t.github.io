@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Snake - A Loop.js Demo</title>
+  <script type="text/javascript" src="../../canvas.js"></script>
+  <script type="text/javascript" src="../../input/input.js"></script>
+  <script type="text/javascript" src="../objects/flashtext.js"></script>
+  <script type="text/javascript" src="../dashedline/dashedline.js"></script>
+  <script type="text/javascript" src="../../loop/loop.js"></script>
+  <script type="text/javascript" src="snake.js"></script>
+  <link rel="stylesheet" href="snake.css" type="text/css" media="screen" /> 
+</head>
+<body>
+<h1>Snake - A Loop.js Demo</h1>
+<b>Controls:</b><br/>
+SPACE - Start | P - Pause/Unpause | W,A,S,D - Move | L - Switch line style | I - Show loop info<br/><br/>
+<canvas id="snakeCanvas" width="400" height="300" />
+
+<script type="text/javascript">
+var canvas = document.getElementById('snakeCanvas');
+
+var snakeGame = new kk.g2d.snake.SnakeGame(canvas, 40);
+snakeGame.start();
+
+</script>
+</body>
+</html>
