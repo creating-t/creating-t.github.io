@@ -52,7 +52,7 @@
 .n1024,.n2048,.n4096,.n8192{color:#fff}
 .n1024,.n2048,.n4096,.n8192{font-size:40px}
 
-/*分数显示*/
+/*路脰脢媒脧脭脢戮*/
 p{width:480px; margin:0 auto;
     font-family:Arial;font-weight:bold;
     font-size:40px; padding-top:15px;
@@ -76,4 +76,12 @@ p{width:480px; margin:0 auto;
 .button{padding:10px; border-radius:6px;
     background-color:#9f8b77; color:#fff;
     cursor:pointer;
+}
+#click
+{
+  margin: 0 0 0 49.11%
+}
+#click1
+{
+  margin: 0 0 0 47%
 }
