@@ -1,0 +1,26 @@
+* { padding:0; margin:0;}       /*设置所有对像的内边距为0*/
+body { text-align:center;}      /*设置页面居中对齐*/
+#photo-list {
+    width:100%;  
+     height:550px;  /*看到这个数就想起晕车的我在公交车上找清明上河图素材的恐怖*/
+     margin:0px auto; 
+  overflow:hidden;     /*溢出部份将被隐藏*/ 
+     border:0px dashed #ccc;  
+ }  
+#photo-list ul { list-style:none;}  
+#photo-list li { float:left; padding-right:0px;}  
+
+#photo-list img { border:0px solid #ddd; background:#fff; padding:0px;} 
+#test     /*为了歌词部分的美观*/
+{
+	animation:change 10s linear 0s infinite;font-size:36px;font-weight:100;text-align:center;
+}
+@keyframes change   
+{
+  0%   {color:#333;}
+	20%  {color:#ff0;}
+	40%  {color:#f60;}
+	60%  {color:#cf0;}
+	80%  {color:#55f;}
+	100% {color:#f00;}
+}       /*渐变*/
