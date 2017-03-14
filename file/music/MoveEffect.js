@@ -115,10 +115,6 @@ for(i=0;i<lrc.length;i++){
     {//优化null造成的显示'ull'情况
     document.getElementById("demo").innerHTML=te[i];
     }
-    else 
-    {
-	    document.getElementById("demo").innerHTML="";
-    }
   }
 }
 setInterval("lll()" ,100);//每0.1秒匹配一次歌词
