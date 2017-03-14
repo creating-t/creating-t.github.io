@@ -28,6 +28,8 @@ if(c) {
 };
 
 var lrc=new Array()     //想起我的纯手工歌词就心疼我自己
+lrc.push('[00:00.11]加载完成^o^')
+lrc.push('[00:00.22]')
 lrc.push('[00:02.00]洛天依 - 清明上河图')
 lrc.push('[00:08.00]~这是天依老婆版~')
 lrc.push('[00:10.00]作词：高进 作曲：高进')
@@ -64,7 +66,7 @@ lrc.push('[01:53.31]上河图雕琢的意义')
 lrc.push('[01:56.99]')
 lrc.push('[02:10.07]QQ：1789912638')
 lrc.push('[02:18.89]')
-lrc.push('[02:32.89]古巷的忧郁')
+lrc.push('[02:32.25]古巷的忧郁')
 lrc.push('[02:35.27]写下琵琶的旋律')
 lrc.push('[02:39.40]飘逸的外衣')
 lrc.push('[02:42.35]街上叫卖的小曲')
@@ -89,9 +91,10 @@ lrc.push('[03:42.36]淡淡胭脂遮住了思绪')
 lrc.push('[03:45.80]小酌几杯却有醉意')
 lrc.push('[03:49.34]多少能人将相 书画三千里')
 lrc.push('[03:53.12]上河图雕琢的意义')
-lrc.push('[03:56.89]你看完了?握草666 一定是真爱')
-lrc.push('[04:04.99]献上一个多大的么么哒 ')
-lrc.push('[04:13.99]')
+lrc.push('[03:57.60]')
+lrc.push('[03:59.89]你看完了?握草666 一定是真爱')
+lrc.push('[04:08.99]献上一个多大的么么哒 ')
+lrc.push('[04:18.99]')
 var ss=new Array()//储存lrc里提取的时间
 var te=new Array()//储存lrc里提取的文字
 for(i=0;i<lrc.length;i++)
@@ -111,9 +114,11 @@ function btn(){
 
 function lll(){     //这个函数里我是模模糊糊混过来的, stime哪来的?上面那函数我没有使stime出来吧
 for(i=0;i<lrc.length;i++){
-    if(stime<ss[i]+0.1 && stime>ss[i]-0.1 && te[i]!='ull')
+    if(stime<ss[i]+0.1 && stime>ss[i]-0.1)
     {//优化null造成的显示'ull'情况
-    document.getElementById("demo").innerHTML=te[i];
+	    if(te[i]!='ull'){
+    document.getElementById("demo").innerHTML=te[i]}
+	    else {document.getElementById("demo").innerHTML=""}
     }
   }
 }
