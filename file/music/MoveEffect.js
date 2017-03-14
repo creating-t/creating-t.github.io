@@ -15,7 +15,7 @@ if(c) {
                 c.scrollLeft = 0;
             };
         },
-        speed = 34; //数值越大越慢
+        speed = 35; //数值越大越慢
    ul.style.width = width*itemCount + 'px'; //加载完后设置容器长度        
     var timer = setInterval(marquee, speed);
     c.onmouseover = function(){
@@ -28,8 +28,8 @@ if(c) {
 };
 
 var lrc=new Array()     //想起我的纯手工歌词就心疼我自己
-lrc.push('[00:00.11]加载完成^o^')
-lrc.push('[00:00.22]')
+lrc.push('[00:00.10]加载完成^o^')
+lrc.push('[00:01.05]')
 lrc.push('[00:02.00]洛天依 - 清明上河图')
 lrc.push('[00:08.00]~这是天依老婆版~')
 lrc.push('[00:10.00]作词：高进 作曲：高进')
