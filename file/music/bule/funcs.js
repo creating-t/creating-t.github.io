@@ -27,42 +27,42 @@ function btn01(){       //打开wind
 };
 function btn02(){       //切换第二首
   windclose();
-  id("music").src="music/xgfzuijiu.mp3";
+  id("music").src="imgs/music/xgfzuijiu.mp3";
   excg("url('imgs/img02.bmp')");
 };
 function btn03(){       //切换第三首
   windclose();
-  id("music").src="music/ghyjianni.mp3";
+  id("music").src="imgs/music/ghyjianni.mp3";
   excg("url('imgs/img03.png')");
 };
 function btn04(){       //切换第四首
   windclose();
-  id("music").src="music/gjsmdbuganla.mp3";
+  id("music").src="imgs/music/gjsmdbuganla.mp3";
   excg("url('imgs/img04.jpg')");
 };
 function btn05(){       //切换第五首
   windclose();
-  id("music").src="music/qianbenying.mp3";
+  id("music").src="imgs/music/qianbenying.mp3";
   excg("url('imgs/img05.png')");
 };
 function btn06(){       //切换第六首
   windclose();
-  id("music").src="music/yanyuan.mp3";
+  id("music").src="imgs/music/yanyuan.mp3";
   excg("url('imgs/img06.bmp')");
 };
 function btn07(){       //切换第七首
   windclose();
-  id("music").src="music/youdiantian.mp3";
+  id("music").src="imgs/music/youdiantian.mp3";
   excg("url('imgs/img07.png')");
 };
 function btn08(){       //切换第八首
   windclose();
-  id("music").src="music/tkzhicheng.mp3";
+  id("music").src="imgs/music/tkzhicheng.mp3";
   excg("url('imgs/img08.jpg')");
 };
 function btn09(){       //切换第九首
   windclose();
-  id("music").src="music/xiaoxingyun.mp3";
+  id("music").src="imgs/music/xiaoxingyun.mp3";
   excg("url('imgs/img09.jpg')");
 };
 function play_pauseBtn(){
