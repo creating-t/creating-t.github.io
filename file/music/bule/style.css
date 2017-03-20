@@ -1,0 +1,131 @@
+*{margin:0px;padding:0px;}
+#musicbg{
+background-image:url(imgs/imgbg.png);
+background-size:cover;
+width:1920px;
+float:left;
+text-align:center;
+height:1080px;
+z-index:-1;
+}
+#btn{
+clear:both;
+position:absolute;	
+margin:15px 15px;
+background-color:#0CF;
+width:80px;
+height:51px;
+border-radius:5px;
+}
+#menu{
+margin:80px 15px;
+position:absolute;
+width:120px;
+height:auto;
+border-radius:5px;
+background-color:#0af;
+display:none;
+overflow:hidden;
+}
+#musicLis ul{list-style:none;text-align:center;}
+#musicLis ul li{margin:20px;color:#cfc;}
+#musicLis ul li:hover{color:#5d9;cursor: pointer;}
+.hamburger .line{
+  width: 40px;
+  height: 5px;
+  background-color: #ecf0f1;
+  display: block;
+  margin: 9px auto;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger:hover{
+  cursor: pointer;
+}
+#hamburger-1.is-active .line:nth-child(2){
+  opacity: 0;
+}
+#hamburger-1.is-active .line:nth-child(1){
+  transform: translateY(14px) rotate(45deg);
+}
+#hamburger-1.is-active .line:nth-child(3){
+  transform: translateY(-14px) rotate(-45deg);
+}
+#wind{
+	display:none;
+	width:80%;
+	height:1080px;
+	background-color:#eee;
+	margin-left:10%;
+	border-width:0px;
+	border-radius:2px;
+	float:left;
+}
+#iframeClose{
+  display:none;
+  position:absolute;
+  opacity:0.4;
+  width:50px;
+  height:50px;
+  border-radius:25px;
+  margin-top:15px;
+  margin-left:1745px;
+  background-color:#0bF;
+}
+#iframeClose:hover{
+  cursor: pointer;
+  opacity:0.8;
+  background-color:#999;
+}
+#iframeClose .line{
+  width: 23px;
+  height: 5px;
+  background-color: #ecf0f1;
+  display: block;
+  margin: 13px auto;
+}
+#iframeClose .line:nth-child(1){
+  transform: translateY(9px) rotate(45deg);
+}
+#iframeClose .line:nth-child(2){
+  transform: translateY(-9px) rotate(-45deg);
+}
+.playContainer { 
+  position: absolute;  
+  background: rgba(0, 0, 0, 0); 
+  width:auto;
+  height:auto;
+  margin-top:800px;
+}  
+.playContainer li {
+  list-style:none;
+  position: relative;  
+  opacity:0.5;
+  border: 25px solid #444; 
+  margin:20px;
+  height: 0; 
+  width:0;  
+  border-radius: 100%; 
+}
+.playContainer li:hover{
+  cursor: pointer;
+} 
+.playContainer p { 
+  border-style: solid; 
+  text-indent: -1px; 
+  position: absolute; 
+  top: -8px; 
+  left: -3px;  
+}    
+.playBtn p { 
+  border-color: transparent transparent transparent #fff; 
+  border-width: 8px 0 8px 12px;  
+  width: 0; 
+  height: 0; 
+}  
+.pauseBtn p {
+  border-color: transparent #fff;  
+  border-width: 0 6px; 
+  height: 15px; 
+  width: 6px; 
+  left: -9px; 
+}  
