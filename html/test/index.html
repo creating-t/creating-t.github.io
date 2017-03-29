@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>闹钟~</title> 
+<link type="text/css" rel="stylesheet" href="style.css">
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<div id="bgcolor">
+  <button id="begin" onclick="animationRun()">开始</button>
+  <button id="end" onclick="animationPause()">暂停</button>
+	<div id="clockbg">
+    	<div id="clockface" onclick="stopAudio()">
+        	<div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="hourPointer"></div>
+        <div id="minutePointer"></div>
+        <div id="secondPointer"></div>
+        <div id="centerAround"></div>
+    </div>
+    <div id="settingTime" >
+        <input type="text" id="hourInput" value="H" />:
+        <input type="text" id="minuteInput" value="M" />:
+        <input type="text" id="secondInput" value="S" />
+    </div>
+    <div id=('getTime')>
+        <p id="getS"><p id="getM"><p id="getH">
+    </div>
+    <audio id="em" src="#" hidden="true" loop="true" autoplay="true"/>
+</div>
+</body>
+</html>
