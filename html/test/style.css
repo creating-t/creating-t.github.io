@@ -112,16 +112,28 @@
 	background-color:#FA1845;
 	box-shadow:0px 0px 12px #FF99CC;
 	border-radius:1.8px;
-	animation: second 60s linear 0s infinite;
 	-webkit-animation: second 60s linear 0s infinite;
-	animation-play-state:paused;
+	-moz-animation: second 60s linear 0s infinite;
+	-o-animation: second 60s linear 0s infinite;
+	animation: second 60s linear 0s infinite;
 	-webkit-animation-play-state:paused;
+	-moz-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	animation-play-state:paused;
 }
-@keyframes second{
+@-webkit-keyframes second{
 	0%	  {transform:rotate(000deg) translateY(-70px);}
 	100%	{transform:rotate(360deg) translateY(-70px);}
 }
-@-webkit-keyframes second{
+@-moz-keyframes second{
+	0%	  {transform:rotate(000deg) translateY(-70px);}
+	100%	{transform:rotate(360deg) translateY(-70px);}
+}
+@-o-keyframes second{
+	0%	  {transform:rotate(000deg) translateY(-70px);}
+	100%	{transform:rotate(360deg) translateY(-70px);}
+}
+@keyframes second{
 	0%	  {transform:rotate(000deg) translateY(-70px);}
 	100%	{transform:rotate(360deg) translateY(-70px);}
 }
@@ -134,16 +146,28 @@
 	background-color:#F90;
 	box-shadow:0px 0px 12px #FF99CC;
 	border-radius:2.9px;
-	animation: minute 3600s linear 0s infinite;
 	-webkit-animation: minute 3600s linear 0s infinite;
-	animation-play-state:paused;
+	-moz-animation: minute 3600s linear 0s infinite;
+	-o-animation: minute 3600s linear 0s infinite;
+	animation: minute 3600s linear 0s infinite;
 	-webkit-animation-play-state:paused;
+	-moz-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	animation-play-state:paused;
 }
-@keyframes minute{
+@-webkit-keyframes minute{
 	0%	  {transform:rotate(000deg) translateY(-60px);}
 	100%	{transform:rotate(360deg) translateY(-60px);}
 }
-@-webkit-keyframes minute{
+@-moz-keyframes minute{
+	0%	  {transform:rotate(000deg) translateY(-60px);}
+	100%	{transform:rotate(360deg) translateY(-60px);}
+}
+@-o-keyframes minute{
+	0%	  {transform:rotate(000deg) translateY(-60px);}
+	100%	{transform:rotate(360deg) translateY(-60px);}
+}
+@keyframes minute{
 	0%	  {transform:rotate(000deg) translateY(-60px);}
 	100%	{transform:rotate(360deg) translateY(-60px);}
 }
@@ -156,17 +180,28 @@
 	background-color:#FA1845;
 	box-shadow:0px 0px 12px #FF99CC;
 	border-radius:4px;
-	animation: hour 43200s linear 0s infinite;
 	-webkit-animation: hour 43200s linear 0s infinite;
-	animation-play-state:paused;
+	-moz-animation: hour 43200s linear 0s infinite;
+	-o-animation: hour 43200s linear 0s infinite;
+	animation: hour 43200s linear 0s infinite;
 	-webkit-animation-play-state:paused;
-	
+	-moz-animation-play-state:paused;
+	-o-animation-play-state:paused;
+	animation-play-state:paused;
 }
-@keyframes hour{
+@-webkit-keyframes hour{
 	0%	  {transform:rotate(000deg) translateY(-48px);}
 	100%	{transform:rotate(360deg) translateY(-48px);}
 }
-@-webkit-keyframes hour{
+@-moz-keyframes hour{
+	0%	  {transform:rotate(000deg) translateY(-48px);}
+	100%	{transform:rotate(360deg) translateY(-48px);}
+}
+@-o-keyframes hour{
+	0%	  {transform:rotate(000deg) translateY(-48px);}
+	100%	{transform:rotate(360deg) translateY(-48px);}
+}
+@keyframes hour{
 	0%	  {transform:rotate(000deg) translateY(-48px);}
 	100%	{transform:rotate(360deg) translateY(-48px);}
 }
@@ -194,54 +229,92 @@
   top:2px;
   width:0px;
   background-color:#f00;
-  animation: gets 60s linear 0s infinite;
   -webkit-animation: gets 60s linear 0s infinite;
-  animation-play-state:paused;
+  -moz-animation: gets 60s linear 0s infinite;
+  -o-animation: gets 60s linear 0s infinite;
+  animation: gets 60s linear 0s infinite;
   -webkit-animation-play-state:paused;
-}
-@keyframes gets{
-	0%	  {width:0px;}
-	100%	{width:60px;}
+  -moz-animation-play-state:paused;
+  -o-animation-play-state:paused;
+  animation-play-state:paused;
 }
 @-webkit-keyframes gets{
 	0%	  {width:0px;}
 	100%	{width:60px;}
 }
+@-moz-keyframes gets{
+	0%	  {width:0px;}
+	100%	{width:60px;}
+}
+@-o-keyframes gets{
+	0%	  {width:0px;}
+	100%	{width:60px;}
+}
+@keyframes gets{
+	0%	  {width:0px;}
+	100%	{width:60px;}
+}
+
 #getM{
   position:absolute;
   height:2px;
   top:6px;
   width:0px;
   background-color:#0f0;
-  animation: getm 3600s linear 0s infinite;
   -webkit-animation: getm 3600s linear 0s infinite;
-  animation-play-state:paused;
+  -moz-animation: getm 3600s linear 0s infinite;
+  -o-animation: getm 3600s linear 0s infinite;
+  animation: getm 3600s linear 0s infinite;
   -webkit-animation-play-state:paused;
-}
-@keyframes getm{
-	0%	  {width:0px;}
-	100%	{width:60px;}
+  -moz-animation-play-state:paused;
+  -o-animation-play-state:paused;
+  animation-play-state:paused;
 }
 @-webkit-keyframes getm{
 	0%	  {width:0px;}
 	100%	{width:60px;}
 }
+@-moz-keyframes getm{
+	0%	  {width:0px;}
+	100%	{width:60px;}
+}
+@-o-keyframes getm{
+	0%	  {width:0px;}
+	100%	{width:60px;}
+}
+@keyframes getm{
+	0%	  {width:0px;}
+	100%	{width:60px;}
+}
+
 #getH{
   position:absolute;
   height:2px;
   top:10px;
   width:0px;
   background-color:#00f;
-  animation: geth 43200s linear 0s infinite;
   -webkit-animation: geth 43200s linear 0s infinite;
-  animation-play-state:paused;
+  -moz-animation: geth 43200s linear 0s infinite;
+  -o-animation: geth 43200s linear 0s infinite;
+  animation: geth 43200s linear 0s infinite;
   -webkit-animation-play-state:paused;
+  -moz-animation-play-state:paused;
+  -o-animation-play-state:paused;
+  animation-play-state:paused;
 }
-@keyframes geth{
+@-webkit-keyframes geth{
 	0%	  {width:0px;}
 	100%	{width:12px;}
 }
-@-webkit-keyframes geth{
+@-moz-keyframes geth{
+	0%	  {width:0px;}
+	100%	{width:12px;}
+}
+@-o-keyframes geth{
+	0%	  {width:0px;}
+	100%	{width:12px;}
+}
+@keyframes geth{
 	0%	  {width:0px;}
 	100%	{width:12px;}
 }
