@@ -2,7 +2,10 @@ function id(el){
   return document.getElementById(el);
 }
 function do_animation(el,state){
-  return id(el).style.animationPlayState=state;
+  id(el).style.webkitAnimationPlayState=state;
+  id(el).style.mzAnimationPlayState=state;
+  id(el).style.oAnimationPlayState=state;
+  id(el).style.animationPlayState=state;
 }
 //---------------------------------------------------//
 var flag=0,S=0,H=0,M=0;
