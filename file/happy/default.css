@@ -1,0 +1,128 @@
+﻿body{margin:0;padding:0;background:#ffe;font-size:12px;overflow:auto}
+#mainDiv{width:100%;height:100%}
+
+#garden{width:100%;height:100%}
+
+#code{float:left;width:440px;height:400px;color:#333;font-family:"Consolas","Monaco","Bitstream Vera Sans Mono","Courier New","sans-serif";font-size:28px}
+#code .string{color:#2a36ff}
+#code .keyword{color:#7f0055;font-weight:bold}
+#code .placeholder{margin-left:15px}#code .space{margin-left:7px}
+#code .comments{color:#3f7f5f}
+#question{
+  background: -webkit-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: -moz-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: -o-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: -ms-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  text-align:center;
+  position:fixed;
+  width:100%;
+  height:100%;
+}
+#q_name{
+  margin-top:320px;
+  width:280px;
+  height:52px;
+  font-size:28px;
+  padding-left:1.2em;
+  border:1px solid #cccccc;
+  border-radius:25px 0px 0px 25px;
+  border-right:none;
+}
+#q_btn{
+  width:70px;
+  height:56px;
+  background-color:#F0FFF0;
+  font-size:28px;
+  border:1px solid #cccccc;
+  border-radius:0px 26px 26px 0px;
+  border-left:none;
+  margin-left:-3px;
+}
+#emoji{
+  margin-top:-320px;
+}
+#emoji embed{
+  width:200px;
+  height:200px;
+  border-radius:100px;
+  -webkit-animation: rotate 4000ms linear infinite;
+  -moz-animation: rotate 4000ms linear infinite;
+  -o-animation: rotate 4000ms linear infinite;
+  -ms-animation: rotate 4000ms linear infinite;
+  animation: rotate 4000ms linear infinite;
+}
+
+/* 定义动画帧 开始 */
+@-webkit-keyframes rotate{
+    0%    {
+             transform:rotate(0deg); 
+    }
+    100%  {
+             transform:rotate(360deg);   
+    }
+}
+
+@-webkit-keyframes glow {
+    0% {
+        border-color: #cccccc;
+        box-shadow: 0 0 5px rgba(102,153,255,.2), inset 0 0 5px rgba(102,153,255,.1);
+    }    
+    100% {
+        border-color: #66FFFF;
+        box-shadow: 0 0 20px rgba(102,153,255,.6), inset 0 0 10px rgba(102,153,255,.4);
+    }
+}
+
+@-moz-keyframes glow {
+    0% {
+        border-color: #cccccc;
+        box-shadow: 0 0 5px rgba(102,153,255,.2), inset 0 0 5px rgba(102,153,255,.1);
+    }    
+    100% {
+        border-color: #66FFFF;
+        box-shadow: 0 0 20px rgba(102,153,255,.6), inset 0 0 10px rgba(102,153,255,.4);
+    }
+}
+
+@-o-keyframes glow {
+    0% {
+        border-color: #cccccc;
+        box-shadow: 0 0 5px rgba(102,153,255,.2), inset 0 0 5px rgba(102,153,255,.1);
+    }    
+    100% {
+        border-color: #66FFFF;
+        box-shadow: 0 0 20px rgba(102,153,255,.6), inset 0 0 10px rgba(102,153,255,.4);
+    }
+}
+
+@-ms-keyframes glow {
+    0% {
+        border-color: #cccccc;
+        box-shadow: 0 0 5px rgba(102,153,255,.2), inset 0 0 5px rgba(102,153,255,.1);
+    }    
+    100% {
+        border-color: #66FFFF;
+        box-shadow: 0 0 20px rgba(102,153,255,.6), inset 0 0 10px rgba(102,153,255,.4);
+    }
+}
+
+@keyframes glow {
+    0% {
+        border-color: #cccccc;
+        box-shadow: 0 0 5px rgba(102,153,255,.2), inset 0 0 5px rgba(102,153,255,.1);
+    }    
+    100% {
+        border-color: #66FFFF;
+        box-shadow: 0 0 20px rgba(102,153,255,.6), inset 0 0 10px rgba(102,153,255,.4);
+    }
+}
+
+#q_name:hover,#q_btn:hover,#q_name:focus,#q_btn:focus{
+  outline:none;
+    -webkit-animation: glow 800ms ease-out infinite alternate;
+    -moz-animation: glow 800ms ease-out infinite alternate;
+    -o-animation: glow 800ms ease-out infinite alternate;
+    -ms-animation: glow 800ms ease-out infinite alternate;
+    animation: glow 800ms ease-out infinite alternate;
+}
