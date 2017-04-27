@@ -12,6 +12,7 @@
   height:100%;
 }
 #yes{
+  outline:none;
   position:absolute;
   top:200px;
   left:320px;
@@ -23,6 +24,7 @@
   transition-duration:0.3s;
 }
 #no{
+  outline:none;
   position:absolute;
   top:200px;
   left:400px;
