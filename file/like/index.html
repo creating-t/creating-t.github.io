@@ -7,9 +7,9 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/main.js"></script>
 </head>
-<body onclick="requestFullScreen()">
+<body >
 <div id="bg">
-  <div id="like" >
+  <div id="like" onclick="requestFullScreen()">
     <p>你是不是喜欢我？</p>
     <img id="cancel" src="src/cancel.png" onclick="alert('关闭窗口也改变不了你喜欢我的事实！')" />
   <input type="button" value="是的" id="yes" onclick="alert('你还真点。。。。');" >
