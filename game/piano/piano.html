@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="src/theme.css">
+<title>HTML 5 JS PIANO</title>
+</head>
+<script src="src/func.js"></script>
+<body>
+  <ul id="choosePiano">
+    <li onclick="TU.loadPiano(9);this.parentNode.style.display='none';">
+      <a>加载9键</a>
+    </li>
+    <li onclick="TU.loadPiano(24);this.parentNode.style.display='none';">
+      <a>加载24键</a>
+    </li>
+    <li onclick="TU.loadPiano(48);this.parentNode.style.display='none';">
+      <a>加载48键</a>
+    </li>
+  </ul>
+</body>
+</html>
