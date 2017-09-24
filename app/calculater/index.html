@@ -72,6 +72,7 @@ function calculater(e){
     if(results == "·"){
         arr.innerText += ".";
         calstr += ".";
+        flag = false;
         return;
     }
     if(results == "="){
@@ -128,16 +129,25 @@ function calculater(e){
 td{
   width:100px;
   height:80px;
-  border:thin solid rgba(160,160,160,.3);
+  border-width:0.5px;
+  border-style:none solid solid none;
+  border-color:rgba(160,160,160,.3);
   cursor:pointer;
 }
 table{
   border:thin solid rgba(0,0,0,0);
   border-radius:10px;
   position:relative;
-  left:90px;
+  left:50%;
+  margin-left:-205px;
   top:100px;
   overflow:hidden;
+}
+@media screen and (max-width:720px){
+  table{
+    width:70%;
+    margin-left:-35%;
+  }
 }
 #par{
   margin-right:10px;
@@ -167,7 +177,7 @@ table{
     <td class="btn">C</td>
     <td class="btn">←</td>
     <td class="btn">÷</td>
-    <td class="btn">×</td>
+    <td class="btn" style="font-family:Arial, Georgia, 'Times New Roman', Times, serif; ">×</td>
   </tr>
   <tr>
     <td class="num">7</td>
