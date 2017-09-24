@@ -17,8 +17,10 @@ function contains(arr, obj) {
     }  
     return false;  
 }    
-function calculater(){
-    var results = event.srcElement.innerText;
+function calculater(e){
+    e = e||window.event;
+    obj = e.srcElement||e.target
+    var results = obj.innerText;
     var arr = document.getElementById('res');
     var par = document.getElementById('par');
     if(results == "C"){
@@ -153,7 +155,7 @@ table{
 </style>
 </head>
 <body>
-<table cellspacing="0" onclick="calculater();">
+<table cellspacing="0" onclick="calculater(event);">
   <tr>
     <td colspan="4" class="btn">
       <p id="par"></p>
