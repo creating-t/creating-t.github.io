@@ -5,7 +5,106 @@
 <title>欢迎(^o^)</title> 
 </head>
 <style>
+*{margin:0px;padding:0px;position:relative;}
+body{
+	width:100%;
+	height:100%;
+}
+#linkblk{
+	width:100%;
+	text-align:center;
+	clear:both;
+}
+.alink{
+	top:130px;
+	left:50%;
+	width:150px;
+	height:90px;
+	line-height:90px;
+	border-radius:5px;
+	margin:30px -75px;
+	cursor:pointer;
+	background-color:#0099ff;
+}
+.alink > a{
+	text-decoration:none;
+	color:#fff;
+}
+#framewdo{
+	top:0px;
+	width:100%;
+	height:0px;
+	position:fixed;
+	text-overflow:clip;
+	border-radius:0px 0px 6px 6px ;
+	z-index:10;
+	transition-duration: 300ms;
+	background-color:#e0ffff;
+}
+#framebtn{
+	clear:both;
+	width:100px;
+	height:50px;
+	background-color:rgba(150,150,150,.2);
+	left:50%;
+	top:0px;
+	margin:0px -50px;
+	position:fixed;
+	border-radius:0px 0px 3px 3px;
+	cursor:pointer;
+	z-index:10;
+	transition-duration: 300ms;
+}
+#framebtn p{
+	width:40px;
+	height:8px;
+	top:20px;
+	line-height:0px;
+	border-radius:4px;
+	background-color:#ddd;
+	float:left;
+	left:22px;
+	margin-left:-8px;
+}
+#framebtn p:nth-child(1){
+	transform:rotate(20deg);
+}
+#framebtn p:nth-child(2){
+	transform:rotate(-20deg);
+}
 </style>
 <body>
+	<div id="framewdo"></div>
+	<div id="framebtn">
+		<p></p>
+		<p></p>
+	</div>
+	<div id="linkblk">
+		<h3 class="alink"><a href="https://creating-t.github.io/app">APP点我</a></h3>
+		<h3 class="alink"><a href="https://creating-t.github.io/game">GAME点我</a></h3>
+	</div>
 </body>
+<script>
+var wdo = document.getElementById("framewdo");
+var btn = document.getElementById("framebtn");
+var wdon = false;
+
+btn.onclick = function(){
+	if(!wdon){
+		wdo.style.height = "300px";
+		btn.style.top = "300px";
+		btn.style.backgroundColor = "rgba(150,150,150,0.8)";
+		btn.children[0].style.transform = "rotate(-20deg)";
+		btn.children[1].style.transform = "rotate(20deg)";
+		wdon = true;
+	}else{
+		wdo.style.height = "0px";
+		btn.style.top = "0px";
+		btn.style.backgroundColor = "rgba(150,150,150,0.2)";
+		btn.children[0].style.transform = "rotate(20deg)";
+		btn.children[1].style.transform = "rotate(-20deg)";
+		wdon = false;
+	}
+}
+</script>
 </html>
