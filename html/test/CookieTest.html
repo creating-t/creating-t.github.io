@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script language="javascript">
+      function Window_Load(){
+       setCookie("name","111"); //临时cookie
+       setCookie("age","222",24 * 7);  //保存7天
+       setCookie("address","333",24,"/"); //保存1天,path为根目录
+        
+       //设定cookie为安全的(secure=true),只能在HTTPS或与其他安全协议
+       //连接在一起的时候才被传输
+       setCookie("phone","444",24,"/",".",false);
+       console.log(document.cookie);
+       console.log(getCookie("age"));
+        
+       //删除名称为"age"的cookie
+       removeCookie("age") 
+       console.log(document.cookie);
+       //删除名称为"address"的cookie,因为设置时设定的path,所以删除
+       //时也需要传入对应path
+       removeCookie("address","/") 
+       console.log(document.cookie);  
+      }
+       
+      function setCookie(name,value,hours,path,domain,secure){
+          var cdata = name + "=" + value;
+          if(hours){
+              var d = new Date();
+              d.setHours(d.getHours() + hours);
+              cdata += "; expires=" + d.toGMTString();
+          }
+          cdata +=path ? ("; path=" + path) : "" ;
+          cdata +=domain ? ("; domain=" + domain) : "" ;
+          cdata +=secure ? ("; secure=" + secure) : "" ;
+          document.cookie = cdata;
+      }
+       
+      function getCookie(name){
+          var reg = eval("/(?:^|;\\s*)" + name + "=([^=]+)(?:;|$)/"); 
+          return reg.test(document.cookie) ? RegExp.$1 : "";
+      }
+       
+      function removeCookie(name,path,domain){
+          this.setCookie(name,"",-1,path,domain);
+      }
+        
+    </script>
+  </head>
+  <body onload="Window_Load();">
+  </body>
+  </html>
