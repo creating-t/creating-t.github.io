@@ -649,7 +649,7 @@ var delGameCookie = function(name){
 	document.cookie="User="+escape(name)+";expire="+date.toGMTString();
 }
 
-var getGameCookie = function(name){
+var getGameCookie = function(){
 	var strCookie=document.cookie;
 	if(!strCookie){
 		return false;
@@ -682,7 +682,9 @@ var init = function(){  //初始化
 		return;
 	}
 	var get = getGameCookie();
+	console.log(get);
 	if(get){
+		document.getElementById("login").style.display = "none";
 		u_name = get["name"];
 		lev = get["level"];
 		u_lev_max = get["level"];
