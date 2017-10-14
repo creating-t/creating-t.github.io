@@ -632,7 +632,7 @@ var setGameCookie = function(n,l){
 	var level = l ? l : "1";
 	var exdate = new Date();
 	exdate.setDate(exdate.getDate()+7);  //cookie储存7天
-	var set = "User=" + escape(name) + "_" + level + ";expire=" + exdate.toGMTString();;
+	var set = "User=" + escape(name) + "_" + level + "; expire=" + exdate.toGMTString() + "; secure=true";
 	document.cookie = set;
 }
 
@@ -647,6 +647,7 @@ var delGameCookie = function(name){
 
 var getGameCookie = function(){
 	var strCookie=unescape(document.cookie);
+	console.log("cookie : " + strCookie);
 	if(!strCookie){
 		return false;
 	}
