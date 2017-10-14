@@ -231,7 +231,7 @@ body{
 <script>
 var u_name;  //当前玩家
 var lev = 1;  //当前等级
-var u_lev_max = 1;  //玩家最大等级
+var u_lev_max;  //玩家最大等级
 var g_lev_max = 104  //游戏最大等级
 var setting = true;  //设置模式
 var config = {"debug":"on"};  //配置参数
@@ -346,12 +346,10 @@ Level_Parameter[104] = {"MOVES":5,"GOAL":-17,"certain":105,"btn":{"1,1":"BUY HIN
 //Level_Parameter[105] = {"MOVES":2,"GOAL":2,"certain":0,"btn":{"1,1":"BUY HINTS","1,2":"+1"}}; 
 
 var load = function(lev){  //(重新)加载level为lev的整个页面
-	if(lev){
-		reload();
-		load_scr(lev);
-		load_btn(lev);
-	}
-	//document.getElementById("main_window").style.display = "block";
+	console.log("lev : " + lev +" u_lev_max : " + u_lev_max);
+	reload(lev);
+	load_scr(lev);
+	load_btn(lev);
 }
 
 var load_btn = function(lev){  //加载键区的键
@@ -379,8 +377,7 @@ var load_scr = function(lev){  //加载显示区的参数
 	document.getElementById("certain").innerText = Level_Parameter[lev]["certain"];
 }
 
-var reload = function(){  //重新加载参数
-	console.log("lev : "+lev)
+var reload = function(lev){  //重新加载参数
 	moves = Level_Parameter[lev]["MOVES"];
 	for(var i = 1;i < 4; i++){
 		for(var j = 1;j < 4; j++){
@@ -420,7 +417,7 @@ var win = function() {  //检查该步后是否满足赢
 var calculater = function(e){  //计算的核心函数
 	e = e||window.event;
 	obj = e.srcElement||e.target
-    var results = obj.innerText;
+    	var results = obj.innerText;
 	var cer = document.getElementById("certain").innerText;
 	if(results == "CLR") {
 		load(lev);
@@ -464,7 +461,8 @@ var calculater = function(e){  //计算的核心函数
 		if(lev < g_lev_max){
 			lev++;
 			if(lev > u_lev_max){
-				setGameCookie(u_name,lev);
+				u_lev_max = lev;
+				setGameCookie(u_name,u_lev_max);
 			}
 			load(lev);
 		}else{
@@ -637,7 +635,6 @@ var setGameCookie = function(n,l){
 	date.setTime(date.getTime()+expireDays*24*3600*1000);
 	var set = "User=" + escape(name) + "_" + level + ";expire=" + date.toGMTString();
 	document.cookie = set;
-	console.log("cookie : " + unescape(document.cookie));
 }
 
 var delGameCookie = function(name){
