@@ -655,7 +655,7 @@ var getGameCookie = function(){
 		return false;
 	}
 	var get = [];
-	var arrget = strCookie.split(";")[0].arrCookie.split("=")[1].split("_");
+	var arrget = strCookie.split("=")[1].split("_");
 	get["name"] = arrget[0];
 	if(arrget.length > 1){
 		get["level"] = arrget[1];
