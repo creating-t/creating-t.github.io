@@ -613,7 +613,8 @@ var c_login = function(){
 			lev = get["level"];
 			u_lev_max = get["level"];
 			load(lev);
-			document.getElementById("c_u").innerText = u_name;
+			document.getElementById("main_window").style.display = "block";
+			document.getElementById("c_u").innerText = u_name[0];
 			document.getElementById("c_u").style.display = "block";
 		}else{
 			alert("sorry,未知bug,登录不了");
@@ -684,7 +685,7 @@ var init = function(){  //初始化
 		u_lev_max = get["level"];
 		document.getElementById("main_window").style.display = "block";
 		load(lev);
-		document.getElementById("c_u").innerText = u_name;
+		document.getElementById("c_u").innerText = u_name[0];
 		document.getElementById("c_u").style.display = "block";
 	}else{
 		document.getElementById("login").style.display = "block";
