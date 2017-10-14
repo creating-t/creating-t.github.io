@@ -668,18 +668,18 @@ var getGameCookie = function(){
 var init = function(){  //初始化
 	if(config.debug == "on"){
 		document.cookie = "test1=test;test2=test;test3=test";
-		console.log(document.cookie);
+		//console.log(document.cookie);
 		if(!document.cookie){  //不能cookie
 			document.getElementById("login").style.display = "none";
 			lev = 1;
 			u_lev_max = g_lev_max;
 			document.getElementById("main_window").style.display = "block";
 			load(1);
+			return;
 		}
 		var exdate=new Date();
 		exdate.setDate(exdate.getDate()-1);
 		document.cookie = "test1=test;expires=" + exdate.toGMTString();
-		return;
 	}
 	var get = getGameCookie();
 	console.log(get);
