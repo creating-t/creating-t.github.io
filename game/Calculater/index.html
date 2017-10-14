@@ -617,7 +617,7 @@ var c_login = function(){
 			load(lev);
 			document.getElementById("main_window").style.display = "block";
 			document.getElementById("c_u").innerText = u_name[0];
-			document.getElementById("c_u").style.display = "block";
+			document.getElementById("c_b").style.display = "block";
 		}else{
 			alert("sorry,未知bug,登录不了");
 		}
@@ -667,7 +667,8 @@ var getGameCookie = function(name){
 
 var init = function(){  //初始化
 	if(config.debug == "on"){
-		document.cookie = "test=test";
+		document.cookie = "test1=test;test2=test;test3=test";
+		console.log(document.cookie);
 		if(!document.cookie){  //不能cookie
 			document.getElementById("login").style.display = "none";
 			lev = 1;
@@ -677,7 +678,7 @@ var init = function(){  //初始化
 		}
 		var exdate=new Date();
 		exdate.setDate(exdate.getDate()-1);
-		document.cookie = "test=test; expires=" + exdate.toGMTString();
+		document.cookie = "test1=test;expires=" + exdate.toGMTString();
 		return;
 	}
 	var get = getGameCookie();
@@ -688,7 +689,7 @@ var init = function(){  //初始化
 		document.getElementById("main_window").style.display = "block";
 		load(lev);
 		document.getElementById("c_u").innerText = u_name[0];
-		document.getElementById("c_u").style.display = "block";
+		document.getElementById("c_b").style.display = "block";
 	}else{
 		document.getElementById("login").style.display = "block";
 	}
