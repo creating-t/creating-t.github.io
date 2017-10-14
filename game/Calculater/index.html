@@ -459,11 +459,15 @@ var calculater = function(e){  //计算的核心函数
 		return;
 	}
 	if(results == "OK") {  //添加成功效果
-		lev++;
-		if(lev > u_lev_max){
-			setGameCookie(u_name,lev);
+		if(lev < g_lev_max){
+			lev++;
+			if(lev > u_lev_max){
+				setGameCookie(u_name,lev);
+			}
+			load(lev);
+		}else{
+			alert("你通关了，快叫他去添加题目吧");
 		}
-		load(lev);
 		return;
 	}
 	if(results == "-") {
@@ -628,7 +632,7 @@ var setGameCookie = function(n,l){
 	var date=new Date();
 	var expireDays=7;  //cookie储存7天
 	date.setTime(date.getTime()+expireDays*24*3600*1000);
-	var set = "User=" + escape(name) + "; Level=" + level + "; expire=" + date.toGMTString();
+	var set = "User=" + escape(name) + ";Level=" + level + ";expire=" + date.toGMTString();
 	document.cookie = set;
 	console.log("cookie : " + document.cookie);
 }
@@ -639,7 +643,7 @@ var delGameCookie = function(name){
 	}
 	var date=new Date();
 	date.setTime(date.getTime()-10000);
-	document.cookie="User="+escape(name)+"; expire="+date.toGMTString();
+	document.cookie="User="+escape(name)+";expire="+date.toGMTString();
 }
 
 var getGameCookie = function(name){
@@ -648,9 +652,13 @@ var getGameCookie = function(name){
 		return false;
 	}
 	var get = [];
-	var arrCookie=strCookie.split("; ");
+	var arrCookie=strCookie.split(";");
 	get["name"] = unescape(arrCookie[0].split("=")[1]);
-	get["level"] = arrCookie[1].split("=")[1];
+	if(arrCookie.length > 1){
+		get["level"] = arrCookie[1].split("=")[1];
+	}else{
+		get["level"] = g_lev_max;
+	}
 	return get;
 }
 
@@ -660,8 +668,7 @@ var init = function(){  //初始化
 		if(!document.cookie){  //不能cookie
 			document.getElementById("login").style.display = "none";
 			lev = 1;
-			u_lev_max = 104;
-			g_lev_max = 104;
+			u_lev_max = g_lev_max;
 			document.getElementById("main_window").style.display = "block";
 			load(1);
 		}
