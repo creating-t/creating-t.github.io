@@ -635,9 +635,9 @@ var setGameCookie = function(n,l){
 	var date=new Date();
 	var expireDays=7;  //cookie储存7天
 	date.setTime(date.getTime()+expireDays*24*3600*1000);
-	var set = "User=" + escape(name) + ";Level=" + level + ";expire=" + date.toGMTString();
+	var set = "User=" + escape(name) + "_" + level + ";expire=" + date.toGMTString();
 	document.cookie = set;
-	console.log("cookie : " + document.cookie);
+	console.log("cookie : " + unescape(document.cookie));
 }
 
 var delGameCookie = function(name){
@@ -650,15 +650,15 @@ var delGameCookie = function(name){
 }
 
 var getGameCookie = function(){
-	var strCookie=document.cookie;
+	var strCookie=unescape(document.cookie);
 	if(!strCookie){
 		return false;
 	}
 	var get = [];
-	var arrCookie=strCookie.split(";");
-	get["name"] = unescape(arrCookie[0].split("=")[1]);
-	if(arrCookie.length > 1){
-		get["level"] = arrCookie[1].split("=")[1];
+	var arrget = strCookie.split(";")[0].arrCookie.split("=")[1].split("_");
+	get["name"] = arrget[0];
+	if(arrget.length > 1){
+		get["level"] = arrget[1];
 	}else{
 		get["level"] = g_lev_max;
 	}
@@ -667,7 +667,7 @@ var getGameCookie = function(){
 
 var init = function(){  //初始化
 	if(config.debug == "on"){
-		document.cookie = "test1=test;test2=test;test3=test";
+		document.cookie = "test1=test;";
 		//console.log(document.cookie);
 		if(!document.cookie){  //不能cookie
 			document.getElementById("login").style.display = "none";
