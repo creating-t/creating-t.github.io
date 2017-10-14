@@ -632,7 +632,7 @@ var setGameCookie = function(n,l){
 	var level = l ? l : "1";
 	var exdate = new Date();
 	exdate.setDate(exdate.getDate()+7);  //cookie储存7天
-	var set = "User=" + escape(name) + "_" + level + "; expire=" + exdate.toGMTString() + "; secure=true";
+	var set = "User=" + escape(name) + "_" + level + "; expires=" + exdate.toGMTString() + "; secure=true";
 	document.cookie = set;
 }
 
