@@ -172,9 +172,9 @@ body{
 	position:fixed;
 	z-index : 10000;
 }
-#login{
+#login {
 }
-#login #c_b {
+#c_b {
 	position:fixed;
 	top:20px;
 	left:20px;
@@ -195,7 +195,9 @@ body{
 <div id="login">
 	<label for="c_name">敢问尊姓大名？<input id="c_name" type="text" onkeydown="c_enter(event)"></label>
 	<input type="button" onclick="c_login()" value="开始">
-	<div id="c_b" onclick="c_logout()"><h2 id="c_u"></h2></div>
+</div>
+<div id="c_b" onclick="c_logout()">
+	<h2 id="c_u"></h2>
 </div>
 <div id="main_window">
 	<div id="screen_block">
