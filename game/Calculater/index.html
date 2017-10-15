@@ -623,8 +623,11 @@ var c_login = function(){
 }
 
 var c_logout = function(){
-	delGameCookie(u_name);
-	window.location=location;
+	var conf = window.confirm("退出将会清除关卡数据，确定吗？");
+	if(conf){
+		delGameCookie(u_name);
+		window.location=location;
+	}
 }
 
 var setGameCookie = function(n,l){
