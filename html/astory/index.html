@@ -25,23 +25,21 @@
 		var initNumber = 0;
 		var count = 0;
 		var imgContainer = document.getElementById("imgs");
-		var lastComplete = true;
 		var imgUrl;
-		var img = new Array();
-		do {
-			if(lastComplete){
-				lastComplete = false;
-				imgUrl = (initNumber + count) + ".jpg";
-				img[count] = new Image();
-				imgContainer.appendChild(img[count]);
-				img[count].onload=function(){
-					console.log(this.src + " complete");
-				}
-				img[count].src = imgUrl;
-				lastComplete = true;
-				count++;
+		var img;
+		var loadNextImg = function(){
+			imgUrl = (initNumber + count) + ".jpg";
+			count++;
+			img = new Image();
+			imgContainer.appendChild(img);
+			img.onload = function(){
+				console.log(this.src);
+				if (count < 20)
+					loadNextImg();
 			}
-		}while(count < 20);
+			img.src = imgUrl;
+		}
+		loadNextImg();
 	})()
 	</script>
 </html>
