@@ -37,9 +37,9 @@
 				img[count].onload=function(){
 					console.log(imgUrl + " complete");
 					lastComplete = true;
+					count++;
 				}
 				img[count].src = imgUrl;
-				count++;
 			}
 		}while(count < 20);
 	})()
