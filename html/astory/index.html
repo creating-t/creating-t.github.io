@@ -31,14 +31,14 @@
 		do {
 			if(lastComplete){
 				lastComplete = false;
-				img[count] = new Image();
-				//img[count].onload=function(){
-					imgContainer.appendChild(img[count]);
-					lastComplete = true;
-				//}
 				imgUrl = (initNumber + count) + ".jpg";
+				img[count] = new Image();
+				imgContainer.appendChild(img[count]);
+				img[count].onload=function(){
+					console.log(imgUrl + " complete");
+					lastComplete = true;
+				}
 				img[count].src = imgUrl;
-				console.log(imgUrl);
 				count++;
 			}
 		}while(count < 20);
