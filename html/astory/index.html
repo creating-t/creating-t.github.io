@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8">
+		<title>男友用我照片勾搭LOL大神网恋，还让我去奔现？？？</title> 
+		<style>
+		* {margin : 0px;padding : 0px;}
+		body {
+			width : 100%;
+			height : auto;
+			background-color : #cdcdcd;
+		}
+		img {
+			margin : 5px auto 5px auto; 
+			display : block;
+		}
+		</style>
+	</head>
+	<body>
+		<div id = "imgs" style="text-align:center">
+		</div>
+	</body>
+	<script>
+	(function(){
+		var initNumber = 0;
+		var count = 0;
+		var imgContainer = document.getElementById("imgs");
+		var lastComplete = true;
+		var imgUrl;
+		var img = new Array();
+		do {
+			if(lastComplete){
+				lastComplete = false;
+				img[count] = new Image();
+				//img[count].onload=function(){
+					imgContainer.appendChild(img[count]);
+					lastComplete = true;
+				//}
+				imgUrl = (initNumber + count) + ".jpg";
+				img[count].src = imgUrl;
+				console.log(imgUrl);
+				count++;
+			}
+		}while(count < 20);
+	})()
+	</script>
+</html>
