@@ -35,11 +35,11 @@
 				img[count] = new Image();
 				imgContainer.appendChild(img[count]);
 				img[count].onload=function(){
-					console.log(imgUrl + " complete");
-					lastComplete = true;
-					count++;
+					console.log(this.src + " complete");
 				}
 				img[count].src = imgUrl;
+				lastComplete = true;
+				count++;
 			}
 		}while(count < 20);
 	})()
