@@ -15,7 +15,11 @@ $(window).resize(function() {
 				var current = str.substr(progress, 1);
 				if (current == '<') {
 					progress = str.indexOf('>', progress) + 1;
-				} else {
+				} 
+				else if (current == '&'){
+					var sh = str.indexOf(';', progress);
+					progress = sh - progress == 5 ? sh + 1 : progress + 1;
+				}else {
 					progress++;
 				}
 				$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
