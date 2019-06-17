@@ -1,19 +1,3 @@
-﻿
-$(function () {
-    $garden = $("#garden");
-    gardenCanvas = $garden[0];
-	  gardenCanvas.width = $("#loveHeart").width();
-    gardenCanvas.height = $("#loveHeart").height()
-    gardenCtx = gardenCanvas.getContext("2d");
-    gardenCtx.globalCompositeOperation = "lighter";
-    garden = new Garden(gardenCtx, gardenCanvas);
-	
-    // renderLoop
-    setInterval(function () {
-        garden.render();
-    }, Garden.options.growSpeed);
-});
-
 $(window).resize(function() {
     var newWidth = $(window).width();
     var newHeight = $(window).height();
