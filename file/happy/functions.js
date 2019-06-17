@@ -18,7 +18,6 @@ $(window).resize(function() {
 				} 
 				else if (current == '&'){
 					var sh = str.indexOf(';', progress);
-					console.log(sh - progress);
 					progress = sh - progress == 5 ? sh + 1 : progress + 1;
 				}else {
 					progress++;
