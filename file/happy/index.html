@@ -13,63 +13,52 @@
 	src: url('digital-7_mono.ttf') format("truetype");
 }
 </style>
-
 <link href="default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="functions.js"></script>
-
 </head>
-
 <body>
 <div id="mainDiv">
-  
-  <div id="question">
-    <input id="q_name" type="text" placeholder="你的名字？" />
-    <input id="q_btn" type="submit" value="确认" onclick="start()"/>
-    <div id="emoji">
-      <img src="emoji1.jpg" alt="Wrong" id="img_emoji" >
-      <audio src="" loop="loop" hidden="true" id="audio">
-      </audio>
-    </div>
-  </div>
-  
-	<div id="content">
-		<div id="code">
-			<span class="comments">/**</span><br />
-			<span class="space"/><span class="comments">*2017-04-11,</span><br />
-			<span class="space"/><span class="comments">*^o^.</span><br />
-			<span class="space"/><span class="comments">*/</span><br />
-			生日&nbsp;快乐&nbsp;呀<span class="keyword"> 小姐姐</span> (*^__^*) ；<br />
-			好气呀&nbsp;被 你 猜到了 我 要 搞这种 东西 给你 ；<br />
-			<span class="comments">// 其实 本来 打算 给 你 写 明信片 的 （*+﹏+*）；</span><br />
-			<span class="comments">// 这 就是 上回 我（*+﹏+*）突然找你 要 电话的原因。。。。 ；</span><br />
-			<span class="keyword">Then</span>。。。&nbsp;<span class="keyword">Then</span>。。。<br />
-			<span class="keyword">你</span>&nbsp;不是 说&nbsp;如果 不是&nbsp;有 <span class="keyword">实用 </span>或是 <span class="keyword">书 ；</span><br />
-			<span class="keyword">请</span> 原路 返回 <span class="comments">// [表情]<span class="keyword">桑心</span>[\表情]</span><br />
-			<span class="comments">// 后来  我 立马 方了。。</span><br />
-			额。。。&nbsp;<span class="keyword">你牛批</span>。。 <span class="keyword">你牛批</span>。。。<br />
-			也好 ，反正 我 字丑 [表情]<span class="keyword">抠鼻</span>[\表情] 。。。<br />
-      也没啥好说的（*+﹏+*）<span class="keyword">无奈</span> <br />
-      <span class="comments">// 你懂我的 （*+﹏+*）；</span><br />
-      简简单单的 <span class="keyword">祝福<br />献上 ：</span>
-      <span class="space"/>祝<span class="keyword">美少女</span> 天天开心&nbsp;学习nice; (ง •̀_•́)ง </span><br />
-      <span class="space"/>漂漂亮亮&nbsp;健健康康&nbsp;吃嘛嘛香;（>^ω^<）喵 </span><br />
-			额  。。。  词穷 。。。 (๑• . •๑) <br />
-			<span class="placeholder"/><span class="comments">// 不知道你会不会喜欢这个。。。</span><br />
-			<span class="placeholder"/><span class="comments">// 管你喜不喜欢，我都发出去了，咋样~ 有本事来打我呀 （>^ω^<） </span><br />
-			<span class="placeholder"/> 哈哈 <span class="keyword">气不气</span> ~ <br />
-			<span class="comments">// 我是程序员 无所畏惧 嘻嘻</span><br />
-			<br>
-			<br>
-			再加几个字吧。。<br />
-			那啥  么么哒 （╯ε╰）<br />
-			<span class="space"/> &nbsp; &nbsp; &nbsp; </span>————涂华武<br />
-		</div>
-		<div>
-			<canvas id="garden"></canvas>
+	<div id="question">
+		<input id="q_name" type="text" placeholder="你的名字？" />
+		<input id="q_btn" type="submit" value="确认" onclick="start()"/>
+		<div id="emoji">
+			<img src="emoji1.jpg" alt="Wrong" id="img_emoji" >
 		</div>
 	</div>
-
+<div id="content">
+	<div id="code">
+		<span class="comments">/**</span><br />
+		<span class="space"/><span class="comments">*2017-04-11,</span><br />
+		<span class="space"/><span class="comments">*^o^.</span><br />
+		<span class="space"/><span class="comments">*/</span><br />
+		生日&nbsp;快乐&nbsp;呀<span class="keyword"> 小姐姐</span> (*^__^*) ；<br />
+		好气呀&nbsp;被 你 猜到了 我 要 搞这种 东西 给你 ；<br />
+		<span class="comments">// 其实 本来 打算 给 你 写 明信片 的 （*+﹏+*）；</span><br />
+		<span class="comments">// 这 就是 上回 我（*+﹏+*）突然找你 要 电话的原因。。。。 ；</span><br />
+		<span class="keyword">Then</span>。。。&nbsp;<span class="keyword">Then</span>。。。<br />
+		<span class="keyword">你</span>&nbsp;不是 说&nbsp;如果 不是&nbsp;有 <span class="keyword">实用 </span>或是 <span class="keyword">书 ；</span><br />
+		<span class="keyword">请</span> 原路 返回 <span class="comments">// [表情]<span class="keyword">桑心</span>[\表情]</span><br />
+		<span class="comments">// 后来  我 立马 方了。。</span><br />
+		额。。。&nbsp;<span class="keyword">你牛批</span>。。 <span class="keyword">你牛批</span>。。。<br />
+		也好 ，反正 我 字丑 [表情]<span class="keyword">抠鼻</span>[\表情] 。。。<br />
+		也没啥好说的（*+﹏+*）<span class="keyword">无奈</span> <br />
+		<span class="comments">// 你懂我的 （*+﹏+*）；</span><br />
+		简简单单的 <span class="keyword">祝福<br />献上 ：</span>
+		<span class="space"/>祝<span class="keyword">美少女</span> 天天开心&nbsp;学习nice; (ง •̀_•́)ง </span><br />
+		<span class="space"/>漂漂亮亮&nbsp;健健康康&nbsp;吃嘛嘛香;（>^ω^<）喵 </span><br />
+		额  。。。  词穷 。。。 (๑• . •๑) <br />
+		<span class="placeholder"/><span class="comments">// 不知道你会不会喜欢这个。。。</span><br />
+		<span class="placeholder"/><span class="comments">// 管你喜不喜欢，我都发出去了，咋样~ 有本事来打我呀 （>^ω^<） </span><br />
+		<span class="placeholder"/> 哈哈 <span class="keyword">气不气</span> ~ <br />
+		<span class="comments">// 我是程序员 无所畏惧 嘻嘻</span><br />
+		<br>
+		<br>
+		再加几个字吧。。<br />
+		那啥  么么哒 （╯ε╰）<br />
+		<span class="space"/> &nbsp; &nbsp; &nbsp; </span>————涂华武<br />
+	</div>
+</div>
 <script type="text/javascript">
 function start(){
   if(document.getElementById("q_name").value=="吴盛清"){
@@ -81,8 +70,5 @@ function start(){
   else alert("不对")
 }
 </script>
-<div style="text-align:center;clear:both">
-
-</div>
 </body>
 </html>
